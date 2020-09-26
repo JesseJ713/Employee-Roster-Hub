@@ -1,6 +1,7 @@
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+const Questions = require("./lib/Questions");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
@@ -10,10 +11,72 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+function createEmployee() {
+  inquirer
+    .prompt(Questions.newQuestion)
+    .then((answer) => {
+      switch (answer.role) {
+        case "Engineer":
+          inquirer.prompt(Questions.engineerQuestion).then((engineerAnswer) => {
+            const engineerData = new Engineer(
+              answer.name,
+              answer.id,
+              answer.email,
+              engineerAnswer.github
+            );
+            readEngineerFile(engineerData);
 
+            restartInquirer();
+          });
+          break;
+        case "Manager":
+          inquirer.prompt(Questions.managerQuestion).then((managerAnswer) => {
+            const managerData = new Engineer(
+              answer.name,
+              answer.id,
+              answer.email,
+              managerAnswer.github
+            );
+            readManagerFile(managerData);
+
+            restartInquirer();
+          });
+          break;
+        case "Intern":
+          inquirer.prompt(Questions.internQuestion).then((internAnswer) => {
+            const internData = new Engineer(
+              answer.name,
+              answer.id,
+              answer.email,
+              internAnswer.github
+            );
+            readManagerFile(internData);
+
+            restartInquirer();
+          });
+          break;
+      }
+    })
+    .catch((err) => {
+      throw err;
+    });
+}
+
+function restartInquirer() {
+  inquirer.prompt(Questions.newQuestion).then((answer) => {
+    switch (answer.role) {
+      case "Yes, I would like to add another member ":
+        createEmployee();
+        break;
+
+      case "No, I would not like to add another member ":
+        createHTML();
+        break;
+    }
+  });
+}
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
