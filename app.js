@@ -63,6 +63,20 @@ function createEmployee() {
       throw err;
     });
 }
+
+function restartInquirer() {
+  inquirer.prompt(Questions.newQuestion).then((answer) => {
+    switch (answer.role) {
+      case "Yes, I would like to add another member ":
+        createEmployee();
+        break;
+
+      case "No, I would not like to add another member ":
+        createHTML();
+        break;
+    }
+  });
+}
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
