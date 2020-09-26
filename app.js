@@ -28,6 +28,33 @@ function createEmployee() {
 
           restartInquirer();
         });
+        break;
+      case "Manager":
+        inquirer.prompt(Questions.managerQuestion).then((managerAnswer) => {
+          const managerData = new Engineer(
+            answer.name,
+            answer.id,
+            answer.email,
+            managerAnswer.github
+          );
+          readManagerFile(managerData);
+
+          restartInquirer();
+        });
+        break;
+      case "Intern":
+        inquirer.prompt(Questions.internQuestion).then((internAnswer) => {
+          const internData = new Engineer(
+            answer.name,
+            answer.id,
+            answer.email,
+            internAnswer.github
+          );
+          readManagerFile(internData);
+
+          restartInquirer();
+        });
+        break;
     }
   });
 }
