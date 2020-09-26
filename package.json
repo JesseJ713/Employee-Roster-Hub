@@ -20,10 +20,9 @@
     "url": "https://github.com/stevetrilogy/unit10hw/issues"
   },
   "homepage": "https://github.com/stevetrilogy/unit10hw#readme",
-  "dependencies": {
-    "inquirer": "^6.3.1"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "inquirer": "^6.5.2",
     "jest": "^24.8.0"
   }
 }
