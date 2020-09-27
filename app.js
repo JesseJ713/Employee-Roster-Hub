@@ -32,7 +32,7 @@ function createEmployee() {
             );
             teamMembers.push(engineerData);
 
-            restartInquirer();
+            restartPrompt();
           });
           break;
         case "Manager":
@@ -45,7 +45,7 @@ function createEmployee() {
             );
             teamMembers.push(managerData);
 
-            restartInquirer();
+            restartPrompt();
           });
           break;
         case "Intern":
@@ -58,7 +58,7 @@ function createEmployee() {
             );
             teamMembers.push(internData);
 
-            restartInquirer();
+            restartPrompt();
           });
           break;
       }
@@ -69,7 +69,7 @@ function createEmployee() {
 }
 
 // This will trigger another cycle of an addition of an employee or break the cycle
-function restartInquirer() {
+function restartPrompt() {
   inquirer.prompt(Questions.newQuestion).then((answer) => {
     switch (answer.role) {
       case "Yes, I would like to add another member ":
