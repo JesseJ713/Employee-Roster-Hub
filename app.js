@@ -1,3 +1,4 @@
+// Establishing module requirements
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -11,8 +12,11 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+// Object array for userInput
 let teamMembers = [];
 
+// This function will first ask base questions standard amongst all employees. Then, depending on which role is defined, it will branch off to ask role specific questions
+// This function will repeat itself until the user chooses to end the prompts and not add another employee
 function createEmployee() {
   inquirer
     .prompt(Questions.baseEmployeeQuestions)
@@ -64,6 +68,7 @@ function createEmployee() {
     });
 }
 
+// This will trigger another cycle of an addition of an employee or break the cycle
 function restartInquirer() {
   inquirer.prompt(Questions.newQuestion).then((answer) => {
     switch (answer.role) {
@@ -79,8 +84,10 @@ function restartInquirer() {
   });
 }
 
+// Creating HTML template
 const createHTML = (html) => {
   fs.writeFileSync(outputPath, html);
 };
 
+// Calling to begin asking user for input towards employees
 createEmployee();
