@@ -11,7 +11,6 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-let html = "";
 let teamMembers = [];
 
 // Write code to use inquirer to gather information about the development team members,
@@ -78,7 +77,8 @@ function restartInquirer() {
         break;
 
       case "No, I would not like to add another member ":
-        createHTML(teamMembers);
+        let html = render(teamMembers);
+        createHTML(html);
         break;
     }
   });
