@@ -33,7 +33,7 @@ function createEmployee() {
           break;
         case "Manager":
           inquirer.prompt(Questions.managerQuestion).then((managerAnswer) => {
-            const managerData = new Engineer(
+            const managerData = new Manager(
               answer.name,
               answer.id,
               answer.email,
@@ -46,7 +46,7 @@ function createEmployee() {
           break;
         case "Intern":
           inquirer.prompt(Questions.internQuestion).then((internAnswer) => {
-            const internData = new Engineer(
+            const internData = new Intern(
               answer.name,
               answer.id,
               answer.email,
