@@ -15,7 +15,7 @@ const render = require("./lib/htmlRenderer");
 // and to create objects for each team member (using the correct classes as blueprints!)
 function createEmployee() {
   inquirer
-    .prompt(Questions.newQuestion)
+    .prompt(Questions.baseEmployeeQuestions)
     .then((answer) => {
       switch (answer.role) {
         case "Engineer":
@@ -77,6 +77,8 @@ function restartInquirer() {
     }
   });
 }
+
+createEmployee();
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
