@@ -11,6 +11,9 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+let html = "";
+let teamMembers = [];
+
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 function createEmployee() {
@@ -26,7 +29,8 @@ function createEmployee() {
               answer.email,
               engineerAnswer.github
             );
-            readEngineerFile(engineerData);
+            // placeholderEngineer(engineerData);
+            teamMembers.push(engineerData);
 
             restartInquirer();
           });
@@ -39,7 +43,8 @@ function createEmployee() {
               answer.email,
               managerAnswer.github
             );
-            readManagerFile(managerData);
+            // placeholderManager(managerData);
+            teamMembers.push(managerData);
 
             restartInquirer();
           });
@@ -52,7 +57,8 @@ function createEmployee() {
               answer.email,
               internAnswer.github
             );
-            readManagerFile(internData);
+            // placeholderIntern(internData);
+            teamMembers.push(internData);
 
             restartInquirer();
           });
@@ -72,11 +78,54 @@ function restartInquirer() {
         break;
 
       case "No, I would not like to add another member ":
-        createHTML();
+        createHTML(teamMembers);
         break;
     }
   });
 }
+
+const createHTML = (html) => {
+  fs.writeFileSync(outputPath, html);
+};
+
+// function placeholderEngineer(engineerData) {
+//   fs.readFile("./templates/engineer.html", "utf8", function (err, data) {
+//     const userData = data
+//       .replace("{{ name }}", engineerData.name)
+//       .replace("{{ role }}", engineerData.role)
+//       .replace("{{ id }}", engineerData.id)
+//       .replace("{{ email }}", engineerData.email)
+//       .replace("{{ github }}", engineerData.github);
+
+//     html += userData;
+//   });
+// }
+
+// function placeholderManager(managerData) {
+//   fs.readFile("./templates/manager.html", "utf8", function (err, data) {
+//     const userData = data
+//       .replace("{{ name }}", managerData.name)
+//       .replace("{{ role }}", managerData.role)
+//       .replace("{{ id }}", managerData.id)
+//       .replace("{{ email }}", managerData.email)
+//       .replace("{{ officeNumber }}", managerData.officeNumber);
+
+//     html += userData;
+//   });
+// }
+
+// function placeholderIntern(internData) {
+//   fs.readFile("./templates/intern.html", "utf8", function (err, data) {
+//     const userData = data
+//       .replace("{{ name }}", internData.name)
+//       .replace("{{ role }}", internData.role)
+//       .replace("{{ id }}", internData.id)
+//       .replace("{{ email }}", internData.email)
+//       .replace("{{ school }}", internData.school);
+
+//     html += userData;
+//   });
+// }
 
 createEmployee();
 // After the user has input all employees desired, call the `render` function (required
