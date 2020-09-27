@@ -100,7 +100,7 @@ function placeholderManager(managerData) {
       .replace("{{ role }}", managerData.role)
       .replace("{{ id }}", managerData.id)
       .replace("{{ email }}", managerData.email)
-      .replace("{{ github }}", managerData.github);
+      .replace("{{ officeNumber }}", managerData.officeNumber);
 
     html += userData;
   });
@@ -113,7 +113,7 @@ function placeholderIntern(internData) {
       .replace("{{ role }}", internData.role)
       .replace("{{ id }}", internData.id)
       .replace("{{ email }}", internData.email)
-      .replace("{{ github }}", internData.github);
+      .replace("{{ school }}", internData.school);
 
     html += userData;
   });
