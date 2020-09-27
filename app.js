@@ -40,7 +40,7 @@ function createEmployee() {
               answer.name,
               answer.id,
               answer.email,
-              managerAnswer.github
+              managerAnswer.officeNumber
             );
             // placeholderManager(managerData);
             teamMembers.push(managerData);
@@ -54,7 +54,7 @@ function createEmployee() {
               answer.name,
               answer.id,
               answer.email,
-              internAnswer.github
+              internAnswer.school
             );
             // placeholderIntern(internData);
             teamMembers.push(internData);
